@@ -4,8 +4,8 @@ from relationship_app.models import Library
 from relationship_app.models import Librarian
 
 
-author = Author.objects.get(name="George Orwell")
-books_by_author = Book.objects.filter(author=author)
+author_name = Author.objects.get(name="George Orwell")
+books_by_author = Book.objects.filter(author=author_name)
 
 library_name = "Central Library"
 library = Library.objects.get(name=library_name)
