@@ -12,9 +12,7 @@ library_name = "Central Library"
 library = Library.objects.get(name=library_name)
 all_books = library.books.all()
 
-author_name = "Alice"
-librarian = Librarian.objects.get(name=author_name)
-library_of_librarian = librarian.library
+librarian = Librarian.objects.get(library=library)
 
 
 
