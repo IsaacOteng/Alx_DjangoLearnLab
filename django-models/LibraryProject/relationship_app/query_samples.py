@@ -7,7 +7,7 @@ from relationship_app.models import Librarian
 author = Author.objects.get(name="George Orwell")
 books_by_author = Book.objects.filter(author=author)
 
-library = Library.objects.get(name="Central Library")
+library = Library.objects.get(name = library_name)
 all_books = library.books.all()
 
 librarian = Librarian.objects.get(name="Alice")
