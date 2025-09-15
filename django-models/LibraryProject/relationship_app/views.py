@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
-from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from .models import Library
 from .models import Book
 
@@ -8,15 +8,9 @@ from .models import Book
 # Create your views here.
 def book_list(request):
     books = Book.objects.all()
-    output = "\n".join([f"{book.title} by {book.author.name}" for book in books])
-    return HttpResponse(output, content_type="text/plain")
+    return render(request, 'relationship_app/list_books.html', {'books': books})
 
-
-class LibraryDetailView(DetailView):
+class LibraryListView(ListView):
     model = Library
-    template_name = 'relationship_app/library_detail.html', 'Library'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['books'] = self.object.books.all()
-        return context
+    template_name = 'relationship_app/library_list.html'
+    context_object_name = 'libraries'
