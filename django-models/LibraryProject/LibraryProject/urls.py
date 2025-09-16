@@ -15,11 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from relationship_app import views
+from django.urls import path, include
+from django.views.generic.base import TemplateView
+from relationship_app.views import SignUpView
 
 urlpatterns = [
+    # path("signup/", SignUpView.as_view(), name="signup"),
     path('admin/', admin.site.urls),
-    path('books/', views.book_list, name='Book list'),
-    path('library/<int:pk>/', views.LibraryDetailView.as_view(), name='Library Detail'),
+    path('', include('relationship_app.urls')),  # I just included my apps url
+    # path('accounts/', include('django.contrib.auth.urls')), 
+    # path('accounts/profile/', TemplateView.as_view(template_name = 'accounts/profile.html'), name='Profile' ),
 ]
+
