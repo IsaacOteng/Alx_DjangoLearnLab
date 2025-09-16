@@ -19,12 +19,24 @@ class LibraryDetailView(DetailView):
     template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
 
-class register(CreateView):
-    form_class = UserCreationForm
-    template_name = "relationship_app/register.html"
+# class register(CreateView):
+#     form_class = UserCreationForm
+#     template_name = "relationship_app/register.html"
 
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)  # logs in for this session
-        return redirect("profile")
+#     def form_valid(self, form):
+#         user = form.save()
+#         login(self.request, user)  # logs in for this session
+#         return redirect("profile")
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("profile")
+        
+    else:
+        form = UserCreationForm()
     
+    return render(request, "relationship_app/register.html", {"form": form})
