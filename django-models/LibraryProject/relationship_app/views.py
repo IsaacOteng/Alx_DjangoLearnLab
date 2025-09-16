@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse 
 from django.views.generic.detail import DetailView
 from .models import Library
@@ -20,5 +20,9 @@ class LibraryDetailView(DetailView):
 
 class register(CreateView):
     form_class = UserCreationForm
-    success_url = reverse_lazy("login")
     template_name = "relationship_app/register.html"
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)  # logs in for this session
+        return redirect("profile")
