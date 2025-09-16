@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth import login
 
+
 # Create your views here.
 def list_books(request):
     books = Book.objects.all()
@@ -26,3 +27,4 @@ class register(CreateView):
         user = form.save()
         login(self.request, user)  # logs in for this session
         return redirect("profile")
+    
