@@ -17,13 +17,13 @@ Including another URLconf
 
 from django.urls import path
 from relationship_app import views
-from django.contrib.auth import views as auth_views 
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
     path('books/', views.list_books, name='List Books'),
     path('library/<int:pk>/', views.LibraryDetailView.as_view(), name='Library Detail'),
-    path('login/', auth_views.LoginView.as_view(template_name = 'relationship_app/login.html'), name= 'login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name = 'relationship_app/logout.html'), name= 'logout'),
+    path('login/', LoginView.as_view(template_name = 'relationship_app/login.html'), name= 'login'),
+    path('logout/', LogoutView.as_view(template_name = 'relationship_app/logout.html'), name= 'logout'),
     path('register/', views.register.as_view(), name = 'register'),
 ]
