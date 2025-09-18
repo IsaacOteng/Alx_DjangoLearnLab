@@ -13,13 +13,13 @@ from .forms import RegistrationForm
 
 # User Roles 
 def is_admin(user):
-    return hasattr(user, "userprofile") and user.userprofile.role == "admin"
+    return hasattr(user, "userprofile") and user.userprofile.role == "Admin"
 
 def is_librarian(user):
-    return hasattr(user, "userprofile") and user.userprofile.role == "librarian"
+    return hasattr(user, "userprofile") and user.userprofile.role == "Librarian"
 
 def is_member(user):
-    return hasattr(user, "userprofile") and user.userprofile.role == "member"
+    return hasattr(user, "userprofile") and user.userprofile.role == "Member"
 
 
 @user_passes_test(is_admin)
@@ -36,14 +36,18 @@ def member_view(request):
 
 # Redirectiong Users Based On their roles
 def role_redirect(request):
+
+    if not request.user.is_authenticated:
+        return redirect("register") 
+    
     role = request.user.userprofile.role
-    if role == "admin":
+    if role == "Admin":
         return redirect("admin_view")
-    elif role == "librarian":
+    elif role == "Librarian":
         return redirect("librarian_view")
     else:
         return redirect("member_view")
-
+    
 
 # Create your views here.
 def list_books(request):

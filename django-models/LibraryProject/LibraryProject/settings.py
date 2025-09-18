@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,9 +27,9 @@ SECRET_KEY = 'django-insecure-hx+v(ib#b_3sx3%u%j+by^=k%z2i3&3tfd_pe_8#n3)gw#^qcq
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-LOGIN_REDIRECT_URL = "role_redirect"
-LOGOUT_REDIRECT_URL = "/profile"
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = reverse_lazy("role_redirect")
+LOGOUT_REDIRECT_URL = ""
 
 # Application definition
 
