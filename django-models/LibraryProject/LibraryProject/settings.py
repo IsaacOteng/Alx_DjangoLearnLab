@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = "/profile"
+LOGIN_REDIRECT_URL = "role_redirect"
 LOGOUT_REDIRECT_URL = "/profile"
 
 # Application definition
