@@ -78,5 +78,7 @@ def register(request):
         
     else:
         form = RegistrationForm()
+
+    _ = UserCreationForm()
     
     return render(request, "relationship_app/register.html", {"form": form})
