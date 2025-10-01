@@ -25,7 +25,7 @@ class BookSerializer(serializers.ModelSerializer):
 #   (e.g., returning an author's details along with all books they wrote).
 
 class AuthorSerializer(serializers.ModelSerializer):
-    name = BookSerializer()
+    name = BookSerializer("many=True, read_only=True")
 
     class Meta:
         model = Author
