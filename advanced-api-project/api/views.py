@@ -30,7 +30,7 @@ class BookUpdateView(generics.UpdateAPIView):
     def perform_update(self, serializer):
         serializer.save()
 
-class BookDestroyView(generics.DestroyAPIView):
+class BookDeleteView(generics.DestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]
